@@ -22,7 +22,7 @@ const timelineData = [
     role: 'Sarjana Sistem Informasi',
     company: 'UIN Raden Intan Lampung',
     period: '2022 - Sekarang',
-    description: 'Lulus dengan predikat Cumlaude. Berfokus pada Rekayasa Perangkat Lunak, Algoritma Struktur Data, dan Pemrograman Web.'
+    description: 'Lulus dengan predikat Cumlaude (insyaallah). Berfokus pada Rekayasa Perangkat Lunak, Algoritma Struktur Data, dan Pemrograman Web.'
   }
 ];
 
