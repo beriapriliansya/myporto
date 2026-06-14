@@ -94,7 +94,7 @@ export default function Contact() {
                 <div>
                   <p className="text-xs text-slate-500 font-semibold uppercase">Email</p>
                   <a href="mailto:john.doe@example.com" className="text-base font-bold text-slate-850 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
-                    john.doe@example.com
+                    beriapriliansya04@gmail.com
                   </a>
                 </div>
               </div>
