@@ -141,58 +141,56 @@ export default function Hero() {
         </div>
 
         {/* Visual Element (Right side) */}
-        <div className="lg:col-span-5 flex justify-center lg:justify-end mt-12 lg:mt-0">
+        <div className="lg:col-span-5 flex justify-center lg:justify-end mt-16 lg:mt-0">
           <motion.div
-            className="relative w-80 h-80 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px]"
+            className="relative w-full max-w-[400px] h-[380px] sm:h-[420px] md:h-[460px] flex justify-center items-end"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {/* Background glowing sphere */}
-            <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-blue-600/20 to-purple-600/20 blur-2xl animate-pulse" />
+            {/* Background glowing sphere behind developer */}
+            <div className="absolute top-12 w-64 h-64 rounded-full bg-gradient-to-tr from-blue-600/20 to-purple-650/20 blur-3xl animate-pulse z-0" />
             
-            {/* Visual Glass Box Card (Shifted slightly back and left) */}
+            {/* 1. Code Editor Card (Floats behind the developer on the left) */}
             <motion.div 
-              className="absolute top-4 left-4 w-[280px] sm:w-[320px] h-[260px] sm:h-[300px] rounded-3xl bg-slate-900/65 border border-slate-200/10 dark:border-white/10 p-5 flex flex-col justify-between shadow-2xl backdrop-blur-md z-0"
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-6 left-0 sm:-left-10 w-[210px] sm:w-[240px] rounded-2xl bg-slate-900/80 border border-slate-200/5 dark:border-white/5 p-4 flex flex-col justify-between shadow-2xl backdrop-blur-md z-0"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
             >
               <div className="flex justify-between items-start">
-                <div className="flex gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
+                <div className="flex gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-red-500" />
+                  <div className="w-2 h-2 rounded-full bg-yellow-500" />
+                  <div className="w-2 h-2 rounded-full bg-green-500" />
                 </div>
-                <span className="text-[10px] font-mono text-slate-500">developer.js</span>
+                <span className="text-[9px] font-mono text-slate-500">profile.js</span>
               </div>
 
-              {/* Pseudo-code illustration */}
-              <div className="font-mono text-[11px] text-slate-400 space-y-1.5 mt-3 flex-grow">
-                <p className="text-purple-400"><span className="text-blue-400">const</span> developer = &#123;</p>
-                <p className="pl-4">name: <span className="text-emerald-400">'Beri Apriliansya'</span>,</p>
-                <p className="pl-4">role: <span className="text-emerald-400">'Full Stack Dev'</span>,</p>
-                <p className="pl-4">skills: [<span className="text-orange-400">'React'</span>, <span className="text-orange-400">'Vite'</span>, <span className="text-orange-400">'Tailwind'</span>],</p>
-                <p className="pl-4">hardworker: <span className="text-amber-400">true</span></p>
+              {/* Pseudo-code */}
+              <div className="font-mono text-[10px] text-slate-400 space-y-1 mt-3 flex-grow">
+                <p className="text-purple-400"><span className="text-blue-400">const</span> dev = &#123;</p>
+                <p className="pl-3">name: <span className="text-emerald-400">'Beri A.'</span>,</p>
+                <p className="pl-3">role: <span className="text-emerald-400">'Full Stack'</span>,</p>
+                <p className="pl-3">focus: <span className="text-emerald-400">'React/Laravel'</span>,</p>
+                <p className="pl-3">creative: <span className="text-amber-400">true</span></p>
                 <p className="text-purple-400">&#125;;</p>
               </div>
 
-              <div className="border-t border-white/5 pt-3 flex justify-between text-[10px] text-slate-500 font-mono">
-                <span className="text-blue-400">⚡ Kreatif & Responsif</span>
-                <span className="text-purple-400">100% Cocok</span>
+              <div className="border-t border-white/5 pt-2 mt-2 flex justify-between text-[9px] text-slate-500 font-mono">
+                <span className="text-blue-400">⚡ Fast & Responsive</span>
               </div>
             </motion.div>
 
-            {/* Profile Cutout Image (In the foreground, with premium float and glow) */}
+            {/* 2. Main Profile Cutout Photo (Centerpiece, rising from bottom, higher z-index) */}
             <motion.img
               src="/profile.png"
               alt="Beri Apriliansya"
-              className="absolute bottom-0 right-4 h-[85%] sm:h-[90%] object-contain z-10 pointer-events-none drop-shadow-[0_25px_40px_rgba(59,130,246,0.3)] filter contrast-[1.05]"
+              className="h-[95%] sm:h-[100%] object-contain z-10 pointer-events-none drop-shadow-[0_20px_45px_rgba(59,130,246,0.35)] filter contrast-[1.03] brightness-[1.02]"
               animate={{ 
-                y: [0, -12, 0],
-                rotate: [0, 0.8, 0, -0.8, 0]
+                y: [0, -10, 0],
+                rotate: [0, 0.5, 0, -0.5, 0]
               }}
               onError={(e) => {
-                // Fallback invisibly if image not loaded yet
                 e.target.style.display = 'none';
               }}
               transition={{
@@ -202,35 +200,33 @@ export default function Hero() {
               }}
             />
 
-            {/* Micro stats cards (Front-most layer) */}
+            {/* 3. Micro stats card (Bottom Left - foreground) */}
             <motion.div
-              className="absolute bottom-6 left-0 sm:-left-4 glass-card px-4 py-2.5 rounded-2xl flex items-center gap-2.5 border border-slate-200/15 dark:border-white/5 z-20 shadow-xl"
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.5 }}
+              className="absolute bottom-10 left-4 sm:-left-8 glass-card px-3.5 py-2 rounded-2xl flex items-center gap-2 border border-slate-200/10 dark:border-white/5 z-20 shadow-xl"
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
             >
-              <span className="text-xl">🏆</span>
+              <span className="text-lg">🏆</span>
               <div>
-                <p className="text-[10px] text-slate-400">Pengalaman</p>
-                <p className="text-xs font-bold text-slate-800 dark:text-slate-100">3+ Tahun</p>
+                <p className="text-[9px] text-slate-400">Pengalaman</p>
+                <p className="text-[11px] font-bold text-slate-800 dark:text-slate-100">3+ Tahun</p>
               </div>
             </motion.div>
 
+            {/* 4. Micro stats card (Top Right - foreground) */}
             <motion.div
-              className="absolute top-12 right-0 sm:-right-4 glass-card px-4 py-2.5 rounded-2xl flex items-center gap-2.5 border border-slate-200/15 dark:border-white/5 z-20 shadow-xl"
-              initial={{ x: 20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.5 }}
+              className="absolute top-16 right-4 sm:-right-8 glass-card px-3.5 py-2 rounded-2xl flex items-center gap-2 border border-slate-200/10 dark:border-white/5 z-20 shadow-xl"
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
             >
-              <span className="text-xl">💻</span>
+              <span className="text-lg">💻</span>
               <div>
-                <p className="text-[10px] text-slate-400">Total Proyek</p>
-                <p className="text-xs font-bold text-slate-800 dark:text-slate-100">6 Selesai</p>
+                <p className="text-[9px] text-slate-400">Total Proyek</p>
+                <p className="text-[11px] font-bold text-slate-800 dark:text-slate-100">6 Selesai</p>
               </div>
             </motion.div>
           </motion.div>
         </div>
-
       </div>
     </section>
   );
