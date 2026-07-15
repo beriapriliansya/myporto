@@ -181,24 +181,29 @@ export default function Hero() {
               </div>
             </motion.div>
 
-            {/* 2. Main Profile Cutout Photo (Centerpiece, rising from bottom, higher z-index) */}
-            <motion.img
-              src="/profile.png"
-              alt="Beri Apriliansya"
-              className="h-[95%] sm:h-[100%] object-contain z-10 pointer-events-none drop-shadow-[0_20px_45px_rgba(59,130,246,0.35)] filter contrast-[1.03] brightness-[1.02]"
+            {/* 2. Main Profile Circle Frame (Centerpiece, floating, higher z-index) */}
+            <motion.div
+              className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 p-[3px] shadow-[0_20px_50px_rgba(59,130,246,0.25)] z-10 overflow-hidden relative"
               animate={{ 
                 y: [0, -10, 0],
-                rotate: [0, 0.5, 0, -0.5, 0]
-              }}
-              onError={(e) => {
-                e.target.style.display = 'none';
               }}
               transition={{
                 duration: 6,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-            />
+            >
+              <div className="w-full h-full rounded-full bg-slate-950/90 overflow-hidden relative">
+                <img
+                  src="/profile.png"
+                  alt="Beri Apriliansya"
+                  className="w-full h-full object-cover object-top scale-[1.05] translate-y-1.5 filter contrast-[1.02] brightness-[1.02]"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                  }}
+                />
+              </div>
+            </motion.div>
 
             {/* 3. Micro stats card (Bottom Left - foreground) */}
             <motion.div
