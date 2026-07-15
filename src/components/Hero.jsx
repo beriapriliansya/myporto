@@ -141,93 +141,67 @@ export default function Hero() {
         </div>
 
         {/* Visual Element (Right side) */}
-        <div className="lg:col-span-5 flex justify-center lg:justify-end mt-16 lg:mt-0">
+        <div className="lg:col-span-5 flex justify-center lg:justify-end">
           <motion.div
-            className="relative w-full max-w-[400px] h-[380px] sm:h-[420px] md:h-[460px] flex justify-center items-end"
+            className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {/* Background glowing sphere behind developer */}
-            <div className="absolute top-12 w-64 h-64 rounded-full bg-gradient-to-tr from-blue-600/20 to-purple-650/20 blur-3xl animate-pulse z-0" />
-            
-            {/* 1. Code Editor Card (Floats behind the developer on the left) */}
+            {/* Visual Glass Box Card with interactive elements */}
             <motion.div 
-              className="absolute top-6 left-0 sm:-left-10 w-[210px] sm:w-[240px] rounded-2xl bg-slate-900/80 border border-slate-200/5 dark:border-white/5 p-4 flex flex-col justify-between shadow-2xl backdrop-blur-md z-0"
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-blue-500/20 via-purple-500/20 to-pink-500/10 border border-slate-200/10 dark:border-white/10 p-6 flex flex-col justify-between shadow-2xl backdrop-blur-md animate-float"
             >
               <div className="flex justify-between items-start">
-                <div className="flex gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-red-500" />
-                  <div className="w-2 h-2 rounded-full bg-yellow-500" />
-                  <div className="w-2 h-2 rounded-full bg-green-500" />
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                  <div className="w-3 h-3 rounded-full bg-green-500" />
                 </div>
-                <span className="text-[9px] font-mono text-slate-500">profile.js</span>
+                <span className="text-xs font-mono text-slate-500">App.jsx</span>
               </div>
 
-              {/* Pseudo-code */}
-              <div className="font-mono text-[10px] text-slate-400 space-y-1 mt-3 flex-grow">
-                <p className="text-purple-400"><span className="text-blue-400">const</span> dev = &#123;</p>
-                <p className="pl-3">name: <span className="text-emerald-400">'Beri A.'</span>,</p>
-                <p className="pl-3">role: <span className="text-emerald-400">'Full Stack'</span>,</p>
-                <p className="pl-3">focus: <span className="text-emerald-400">'React/Laravel'</span>,</p>
-                <p className="pl-3">creative: <span className="text-amber-400">true</span></p>
+              {/* Pseudo-code illustration inside */}
+              <div className="font-mono text-xs text-slate-400 space-y-2 mt-4 flex-grow">
+                <p className="text-purple-400"><span className="text-blue-400">const</span> developer = &#123;</p>
+                <p className="pl-4">name: <span className="text-emerald-400">'Beri Apriliansya'</span>,</p>
+                <p className="pl-4">role: <span className="text-emerald-400">'Full Stack Dev'</span>,</p>
+                <p className="pl-4">skills: [<span className="text-orange-400">'React'</span>, <span className="text-orange-400">'Vite'</span>, <span className="text-orange-400">'Tailwind'</span>],</p>
+                <p className="pl-4">hardworker: <span className="text-amber-400">true</span>,</p>
+                <p className="pl-4 text-slate-500">// Terus berkembang setiap hari</p>
                 <p className="text-purple-400">&#125;;</p>
               </div>
 
-              <div className="border-t border-white/5 pt-2 mt-2 flex justify-between text-[9px] text-slate-500 font-mono">
-                <span className="text-blue-400">⚡ Fast & Responsive</span>
+              <div className="border-t border-slate-200/15 dark:border-white/5 pt-4 flex justify-between text-xs text-slate-500 font-mono">
+                <span className="text-blue-400">⚡ Kreatif & Responsif</span>
+                <span className="text-purple-400">100% Cocok</span>
               </div>
             </motion.div>
 
-            {/* 2. Main Profile Circle Frame (Centerpiece, floating, higher z-index) */}
+            {/* Micro stats cards layered behind/around */}
             <motion.div
-              className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 p-[3px] shadow-[0_20px_50px_rgba(59,130,246,0.25)] z-10 overflow-hidden relative"
-              animate={{ 
-                y: [0, -10, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
+              className="absolute -bottom-6 -left-6 glass-card px-5 py-3 rounded-2xl flex items-center gap-3 border border-slate-200/15 dark:border-white/5"
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
             >
-              <div className="w-full h-full rounded-full bg-slate-950/90 overflow-hidden relative">
-                <img
-                  src="/profile.png"
-                  alt="Beri Apriliansya"
-                  className="w-full h-full object-cover object-top scale-[1.05] translate-y-1.5 filter contrast-[1.02] brightness-[1.02]"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                  }}
-                />
-              </div>
-            </motion.div>
-
-            {/* 3. Micro stats card (Bottom Left - foreground) */}
-            <motion.div
-              className="absolute bottom-10 left-4 sm:-left-8 glass-card px-3.5 py-2 rounded-2xl flex items-center gap-2 border border-slate-200/10 dark:border-white/5 z-20 shadow-xl"
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <span className="text-lg">🏆</span>
+              <span className="text-2xl">🏆</span>
               <div>
-                <p className="text-[9px] text-slate-400">Pengalaman</p>
-                <p className="text-[11px] font-bold text-slate-800 dark:text-slate-100">3+ Tahun</p>
+                <p className="text-xs text-slate-400 dark:text-slate-400">Pengalaman</p>
+                <p className="text-sm font-bold text-slate-800 dark:text-slate-100">3+ Tahun</p>
               </div>
             </motion.div>
 
-            {/* 4. Micro stats card (Top Right - foreground) */}
             <motion.div
-              className="absolute top-16 right-4 sm:-right-8 glass-card px-3.5 py-2 rounded-2xl flex items-center gap-2 border border-slate-200/10 dark:border-white/5 z-20 shadow-xl"
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-6 -right-6 glass-card px-5 py-3 rounded-2xl flex items-center gap-3 border border-slate-200/15 dark:border-white/5"
+              initial={{ x: 20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.9, duration: 0.5 }}
             >
-              <span className="text-lg">💻</span>
+              <span className="text-2xl">💻</span>
               <div>
-                <p className="text-[9px] text-slate-400">Total Proyek</p>
-                <p className="text-[11px] font-bold text-slate-800 dark:text-slate-100">6 Selesai</p>
+                <p className="text-xs text-slate-400 dark:text-slate-400">Total Proyek</p>
+                <p className="text-sm font-bold text-slate-800 dark:text-slate-100">6 Selesai</p>
               </div>
             </motion.div>
           </motion.div>
