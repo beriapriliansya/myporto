@@ -141,67 +141,91 @@ export default function Hero() {
         </div>
 
         {/* Visual Element (Right side) */}
-        <div className="lg:col-span-5 flex justify-center lg:justify-end">
+        <div className="lg:col-span-5 flex justify-center lg:justify-end mt-12 lg:mt-0">
           <motion.div
-            className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96"
+            className="relative w-80 h-80 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px]"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {/* Visual Glass Box Card with interactive elements */}
+            {/* Background glowing sphere */}
+            <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-blue-600/20 to-purple-600/20 blur-2xl animate-pulse" />
+            
+            {/* Visual Glass Box Card (Shifted slightly back and left) */}
             <motion.div 
-              className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-blue-500/20 via-purple-500/20 to-pink-500/10 border border-slate-200/10 dark:border-white/10 p-6 flex flex-col justify-between shadow-2xl backdrop-blur-md animate-float"
+              className="absolute top-4 left-4 w-[280px] sm:w-[320px] h-[260px] sm:h-[300px] rounded-3xl bg-slate-900/65 border border-slate-200/10 dark:border-white/10 p-5 flex flex-col justify-between shadow-2xl backdrop-blur-md z-0"
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             >
               <div className="flex justify-between items-start">
                 <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                  <div className="w-3 h-3 rounded-full bg-green-500" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
                 </div>
-                <span className="text-xs font-mono text-slate-500">App.jsx</span>
+                <span className="text-[10px] font-mono text-slate-500">developer.js</span>
               </div>
 
-              {/* Pseudo-code illustration inside */}
-              <div className="font-mono text-xs text-slate-400 space-y-2 mt-4 flex-grow">
+              {/* Pseudo-code illustration */}
+              <div className="font-mono text-[11px] text-slate-400 space-y-1.5 mt-3 flex-grow">
                 <p className="text-purple-400"><span className="text-blue-400">const</span> developer = &#123;</p>
                 <p className="pl-4">name: <span className="text-emerald-400">'Beri Apriliansya'</span>,</p>
                 <p className="pl-4">role: <span className="text-emerald-400">'Full Stack Dev'</span>,</p>
                 <p className="pl-4">skills: [<span className="text-orange-400">'React'</span>, <span className="text-orange-400">'Vite'</span>, <span className="text-orange-400">'Tailwind'</span>],</p>
-                <p className="pl-4">hardworker: <span className="text-amber-400">true</span>,</p>
-                <p className="pl-4 text-slate-500">// Terus berkembang setiap hari</p>
+                <p className="pl-4">hardworker: <span className="text-amber-400">true</span></p>
                 <p className="text-purple-400">&#125;;</p>
               </div>
 
-              <div className="border-t border-slate-200/15 dark:border-white/5 pt-4 flex justify-between text-xs text-slate-500 font-mono">
+              <div className="border-t border-white/5 pt-3 flex justify-between text-[10px] text-slate-500 font-mono">
                 <span className="text-blue-400">⚡ Kreatif & Responsif</span>
                 <span className="text-purple-400">100% Cocok</span>
               </div>
             </motion.div>
 
-            {/* Micro stats cards layered behind/around */}
+            {/* Profile Cutout Image (In the foreground, with premium float and glow) */}
+            <motion.img
+              src="/profile.png"
+              alt="Beri Apriliansya"
+              className="absolute bottom-0 right-4 h-[85%] sm:h-[90%] object-contain z-10 pointer-events-none drop-shadow-[0_25px_40px_rgba(59,130,246,0.3)] filter contrast-[1.05]"
+              animate={{ 
+                y: [0, -12, 0],
+                rotate: [0, 0.8, 0, -0.8, 0]
+              }}
+              onError={(e) => {
+                // Fallback invisibly if image not loaded yet
+                e.target.style.display = 'none';
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+
+            {/* Micro stats cards (Front-most layer) */}
             <motion.div
-              className="absolute -bottom-6 -left-6 glass-card px-5 py-3 rounded-2xl flex items-center gap-3 border border-slate-200/15 dark:border-white/5"
+              className="absolute bottom-6 left-0 sm:-left-4 glass-card px-4 py-2.5 rounded-2xl flex items-center gap-2.5 border border-slate-200/15 dark:border-white/5 z-20 shadow-xl"
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.7, duration: 0.5 }}
             >
-              <span className="text-2xl">🏆</span>
+              <span className="text-xl">🏆</span>
               <div>
-                <p className="text-xs text-slate-400 dark:text-slate-400">Pengalaman</p>
-                <p className="text-sm font-bold text-slate-800 dark:text-slate-100">3+ Tahun</p>
+                <p className="text-[10px] text-slate-400">Pengalaman</p>
+                <p className="text-xs font-bold text-slate-800 dark:text-slate-100">3+ Tahun</p>
               </div>
             </motion.div>
 
             <motion.div
-              className="absolute -top-6 -right-6 glass-card px-5 py-3 rounded-2xl flex items-center gap-3 border border-slate-200/15 dark:border-white/5"
+              className="absolute top-12 right-0 sm:-right-4 glass-card px-4 py-2.5 rounded-2xl flex items-center gap-2.5 border border-slate-200/15 dark:border-white/5 z-20 shadow-xl"
               initial={{ x: 20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.5 }}
             >
-              <span className="text-2xl">💻</span>
+              <span className="text-xl">💻</span>
               <div>
-                <p className="text-xs text-slate-400 dark:text-slate-400">Total Proyek</p>
-                <p className="text-sm font-bold text-slate-800 dark:text-slate-100">6 Selesai</p>
+                <p className="text-[10px] text-slate-400">Total Proyek</p>
+                <p className="text-xs font-bold text-slate-800 dark:text-slate-100">6 Selesai</p>
               </div>
             </motion.div>
           </motion.div>
