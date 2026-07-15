@@ -1,45 +1,94 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, Layers } from 'lucide-react';
 
-const categories = ['Semua', 'Web Dev', 'Mobile App', 'UI/UX Design'];
+const categories = ['Semua', 'Web Dev', 'Data Science'];
 
 const projectsData = [
   {
-    title: 'E-Commerce Platform',
+    title: 'SMP Negeri 6 Tulung Selapan',
     category: 'Web Dev',
-    tags: ['React', 'Tailwind CSS', 'Node.js', 'MongoDB'],
-    description: 'Platform e-commerce lengkap dengan sistem keranjang belanja, proses checkout, dashboard admin, dan integrasi payment gateway Midtrans.',
-    demoLink: 'https://example.com',
-    gitLink: 'https://github.com',
-    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800'
+    tags: ['Laravel', 'Blade', 'Tailwind CSS', 'MySQL'],
+    description: 'Website resmi SMP Negeri 6 Tulung Selapan sebagai pusat informasi akademik, profil sekolah, dan berita terintegrasi.',
+    demoLink: '#',
+    gitLink: 'https://github.com/beriapriliansya/SMPN6TLS',
+    image: '/school_hero.png.png'
   },
   {
-    title: 'Fintech Mobile Wallet',
-    category: 'Mobile App',
-    tags: ['React Native', 'Redux Toolkit', 'Express.js', 'PostgreSQL'],
-    description: 'Aplikasi dompet digital untuk transfer dana cepat, pembayaran tagihan bulanan, top up saldo, serta pencatatan riwayat transaksi keuangan harian.',
-    demoLink: 'https://example.com',
-    gitLink: 'https://github.com',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800'
+    title: 'LaporKu - Pengaduan Masyarakat',
+    category: 'Web Dev',
+    tags: ['Laravel', 'Blade', 'Bootstrap', 'MySQL'],
+    description: 'Sistem pelaporan aduan online untuk mendukung program e-government di Kecamatan Kotaagung, lengkap dengan dashboard pelacakan status.',
+    demoLink: '#',
+    gitLink: 'https://github.com/beriapriliansya/pengaduan-masyarakat',
+    image: '/lapor_ku.png'
   },
   {
-    title: 'Modern Agency UI/UX',
-    category: 'UI/UX Design',
-    tags: ['Figma', 'Prototyping', 'Design System', 'Responsive'],
-    description: 'Desain antarmuka website agensi kreatif modern dengan fokus estetika minimalis, kegunaan navigasi (UX), dan tata letak yang sangat interaktif.',
-    demoLink: 'https://example.com',
-    gitLink: 'https://github.com',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800'
+    title: 'RestoPOS - Point Of Sale',
+    category: 'Web Dev',
+    tags: ['PHP', 'JavaScript', 'CSS3', 'MySQL'],
+    description: 'Aplikasi kasir (Point of Sale) restoran modern untuk mengelola pesanan menu, keranjang aktif, kalkulasi tagihan, dan cetak transaksi secara real-time.',
+    demoLink: '#',
+    gitLink: 'https://github.com/beriapriliansya/PointOfSale-Kasir',
+    image: '/resto_pos.png'
+  },
+  {
+    title: 'SI - DETEKSI AI',
+    category: 'Data Science',
+    tags: ['Python', 'Flask', 'Machine Learning', 'Tailwind CSS'],
+    description: 'Sistem deteksi kecerdasan buatan (AI) dan analisis risiko kecurangan tugas akademik untuk memilah karya orisinil manusia dari tulisan generator AI.',
+    demoLink: '#',
+    gitLink: 'https://github.com/beriapriliansya/KLASIFIKASI-RISIKO-KECURANGAN-TUGAS',
+    image: '/deteksi_ai.png'
+  },
+  {
+    title: 'Dinas Perdagangan Bandar Lampung',
+    category: 'Web Dev',
+    tags: ['Laravel', 'Blade', 'Tailwind CSS', 'MySQL'],
+    description: 'Website portal resmi Dinas Perdagangan Kota Bandar Lampung untuk memantau pergerakan harga komoditas pasar, pengajuan layanan publik, dan media informasi berita perdagangan.',
+    demoLink: '#',
+    gitLink: 'https://github.com/beriapriliansya/disper',
+    image: '/disper.png'
+  },
+  {
+    title: 'Halo Lampung - Portal Pariwisata',
+    category: 'Web Dev',
+    tags: ['Laravel', 'Blade', 'Tailwind CSS', 'MySQL'],
+    description: 'Platform portal pariwisata Lampung terintegrasi untuk mengeksplorasi destinasi wisata alam instagramable, info pantai eksotis, kuliner lokal, dan budaya daerah.',
+    demoLink: '#',
+    gitLink: 'https://github.com/beriapriliansya/UAS_HaloLampung',
+    image: '/halo_lampung.png'
   }
 ];
 
+export const getStoredProjects = () => {
+  const stored = localStorage.getItem('portfolio_projects');
+  if (stored) {
+    try {
+      return JSON.parse(stored);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  localStorage.setItem('portfolio_projects', JSON.stringify(projectsData));
+  return projectsData;
+};
+
 export default function Projects() {
   const [activeTab, setActiveTab] = useState('Semua');
+  const [projectsList, setProjectsList] = useState(() => getStoredProjects());
+
+  useEffect(() => {
+    const handleProjectsUpdate = () => {
+      setProjectsList(getStoredProjects());
+    };
+    window.addEventListener('portfolio_projects_updated', handleProjectsUpdate);
+    return () => window.removeEventListener('portfolio_projects_updated', handleProjectsUpdate);
+  }, []);
 
   const filteredProjects = activeTab === 'Semua' 
-    ? projectsData 
-    : projectsData.filter(project => project.category === activeTab);
+    ? projectsList 
+    : projectsList.filter(project => project.category === activeTab);
 
   return (
     <section id="projects" className="py-24 relative bg-transparent overflow-hidden">
@@ -121,6 +170,10 @@ export default function Projects() {
                     src={project.image} 
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800';
+                    }}
                     loading="lazy"
                   />
                   

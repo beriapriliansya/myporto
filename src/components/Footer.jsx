@@ -43,6 +43,7 @@ export default function Footer() {
           <a href="#home" className="hover:text-blue-550 transition-colors">Home</a>
           <a href="#about" className="hover:text-blue-550 transition-colors">Tentang</a>
           <a href="#projects" className="hover:text-blue-550 transition-colors">Proyek</a>
+          <a href="#admin" className="hover:text-blue-550 transition-colors text-slate-500/60 dark:text-slate-600">Admin</a>
         </div>
       </div>
 

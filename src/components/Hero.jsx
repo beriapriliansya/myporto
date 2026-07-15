@@ -201,7 +201,7 @@ export default function Hero() {
               <span className="text-2xl">💻</span>
               <div>
                 <p className="text-xs text-slate-400 dark:text-slate-400">Total Proyek</p>
-                <p className="text-sm font-bold text-slate-800 dark:text-slate-100">3 Selesai</p>
+                <p className="text-sm font-bold text-slate-800 dark:text-slate-100">6 Selesai</p>
               </div>
             </motion.div>
           </motion.div>

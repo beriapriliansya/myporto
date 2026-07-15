@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from './ThemeContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -7,8 +7,23 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import AdminDashboard from './components/AdminDashboard';
 
 function MainApp() {
+  const [route, setRoute] = useState(() => window.location.hash);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setRoute(window.location.hash);
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  if (route === '#admin') {
+    return <AdminDashboard />;
+  }
+
   return (
     <div className="relative min-h-screen bg-white dark:bg-dark-bg text-slate-800 dark:text-slate-100 transition-colors duration-300 overflow-x-hidden">
       {/* Dynamic Ambient Background Nodes */}
