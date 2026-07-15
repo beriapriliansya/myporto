@@ -20,7 +20,7 @@ export default function Contact() {
 
     // Simulate sending email
     await new Promise((resolve) => setTimeout(resolve, 1500));
-    
+
     setIsSubmitting(false);
     setSubmitted(true);
     setFormData({ name: '', email: '', message: '' });
@@ -43,10 +43,10 @@ export default function Contact() {
       <div className="glow-spot glow-blue top-[20%] right-[10%]" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
+
         {/* Title */}
         <div className="text-center max-w-xl mx-auto mb-16">
-          <motion.span 
+          <motion.span
             className="text-xs font-semibold tracking-widest uppercase text-blue-500 dark:text-blue-400"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -54,7 +54,7 @@ export default function Contact() {
           >
             Kontak
           </motion.span>
-          <motion.h2 
+          <motion.h2
             className="mt-2 text-3xl sm:text-4xl font-bold font-display text-slate-800 dark:text-slate-100"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -67,9 +67,9 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Left: Contact Info */}
-          <motion.div 
+          <motion.div
             className="lg:col-span-5 space-y-8"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -126,7 +126,7 @@ export default function Contact() {
           </motion.div>
 
           {/* Right: Contact Form */}
-          <motion.div 
+          <motion.div
             className="lg:col-span-7 w-full"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
